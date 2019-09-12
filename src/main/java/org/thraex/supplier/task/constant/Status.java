@@ -12,7 +12,7 @@ public enum Status {
     INTROSPECT_FAILURE("请求合法性验证失败"),
     INTROSPECT_ILLEGAL("请求合法性验证未通过");
 
-    private final String phrase;
+    public final String phrase;
 
     Status(String phrase) {
         this.phrase = phrase;

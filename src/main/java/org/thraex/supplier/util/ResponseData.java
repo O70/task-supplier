@@ -1,0 +1,31 @@
+package org.thraex.supplier.util;
+
+import lombok.Data;
+
+/**
+ * @author 鬼王
+ * @date 2019/09/12 21:31
+ */
+@Data
+public class ResponseData {
+
+    private Object data;
+
+    private boolean success;
+
+    public ResponseData() {}
+
+    public ResponseData(Object data, boolean success) {
+        this.data = data;
+        this.success = success;
+    }
+
+    public static ResponseData success(Object data) {
+        return new ResponseData(data, true);
+    }
+
+    public static ResponseData fail(Object data) {
+        return new ResponseData(data, false);
+    }
+
+}
