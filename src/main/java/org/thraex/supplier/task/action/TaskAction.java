@@ -23,7 +23,7 @@ import java.util.function.Supplier;
  */
 @Log4j2
 @WebServlet("/taskListService")
-public class TaskListServiceAction extends HttpServlet {
+public class TaskAction extends HttpServlet {
 
     private final static String ENCODING = "utf-8";
     private final static String CONTENT_TYPE = "application/json;charset=utf-8";
