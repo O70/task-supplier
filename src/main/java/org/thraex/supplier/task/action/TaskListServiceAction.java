@@ -1,7 +1,7 @@
 package org.thraex.supplier.task.action;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j2;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.thraex.supplier.task.constant.Labels;
 import org.thraex.supplier.task.constant.Status;
 import org.thraex.supplier.util.ResponseData;
@@ -67,7 +67,7 @@ public class TaskListServiceAction extends HttpServlet {
             output(response).apply(ResponseData.fail(message)).run();
         }
 
-        log.info("#doPost execution time: [%.4f]", (System.currentTimeMillis() - start) / 1000F);
+        log.info("#doPost execution time: {}.", (System.currentTimeMillis() - start) / 1000F);
     }
 
     private Runnable start(HttpServletRequest request, HttpServletResponse response) {

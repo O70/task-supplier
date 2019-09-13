@@ -1,0 +1,14 @@
+Configuration:
+  Appenders:
+    Console:
+      name: STDOUT
+      PatternLayout:
+        # Jansi highlight
+        Pattern: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %highlight{%-5level} %highlight{%c{1.}.%M(%L)}: %msg%n"
+  Loggers:
+    Logger:
+      - name: org.thraex
+        level: info
+        additivity: false
+        AppenderRef:
+          ref: STDOUT

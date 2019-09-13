@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    OFF	0
-    FATAL	100
-    ERROR	200 default
-    WARN	300
-    INFO	400
-    DEBUG	500
-    TRACE	600
-    ALL	Integer.MAX_VALUE
+    Automatic Configuration: http://logging.apache.org/log4j/2.x/manual/configuration.html
+    http://logging.apache.org/log4j/2.x/manual/architecture.html
+    Custom Log Levels: http://logging.apache.org/log4j/2.x/manual/customloglevels.html
 -->
 <Configuration>
     <Appenders>
@@ -16,11 +11,11 @@
         </Console>
     </Appenders>
     <Loggers>
-        <!--<Logger name="org.thraex.supplier" level="trace">-->
-            <!--<AppenderRef ref="Console"/>-->
-        <!--</Logger>-->
-        <Root>
+        <Logger name="org.thraex.supplier" level="INFO">
             <AppenderRef ref="Console"/>
-        </Root>
+        </Logger>
+        <!--<Root level="debug">-->
+            <!--<AppenderRef ref="Console"/>-->
+        <!--</Root>-->
     </Loggers>
 </Configuration>

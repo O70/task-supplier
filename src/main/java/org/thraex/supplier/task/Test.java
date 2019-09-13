@@ -12,19 +12,12 @@ public class Test {
     private static final Logger logger = LogManager.getLogger(Test.class);
 
     public static void main(String[] args) {
-        //logger.error("Hello, World!");
-        //logger.info("Hello, World!");
-        //logger.debug("Hello, World!");
-        //logger.warn("Hello, World!");
-        //logger.trace("Hello, World!");
-
         logger.fatal("fatal...");
         logger.error("error...");
         logger.warn("warn...");
         logger.info("info....");
         logger.debug("debug...");
         logger.trace("trace...");
-
     }
 
 }
