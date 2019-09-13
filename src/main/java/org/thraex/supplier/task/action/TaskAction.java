@@ -22,7 +22,7 @@ import java.util.function.Supplier;
  * @date 2019/09/12 18:42
  */
 @Log4j2
-@WebServlet("/taskListService")
+@WebServlet({ "/taskListService", "/task" })
 public class TaskAction extends HttpServlet {
 
     private final static String ENCODING = "utf-8";
