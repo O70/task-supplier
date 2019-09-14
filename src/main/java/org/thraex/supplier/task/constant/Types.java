@@ -10,7 +10,7 @@ public enum Types {
 
     TODO, DONE;
 
-    static Types get(String name) {
+    public static Types get(String name) {
         return Arrays.stream(values()).filter(it -> it.name().equalsIgnoreCase(name)).findAny().orElse(null);
     }
 

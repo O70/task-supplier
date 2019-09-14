@@ -12,8 +12,6 @@ import java.util.List;
 @Getter
 public class Parameters {
 
-    private String token;
-
     private String userCode;
     private String beginTime;
     private String endTime;
@@ -22,8 +20,7 @@ public class Parameters {
     /**
      * 用于{@link Types#TODO}
      */
-    public Parameters(String token, String userCode, String beginTime, String endTime) {
-        this.token = token;
+    public Parameters(String userCode, String beginTime, String endTime) {
         this.userCode = userCode;
         this.beginTime = beginTime;
         this.endTime = endTime;
@@ -32,8 +29,7 @@ public class Parameters {
     /**
      * 用于{@link Types#DONE}
      */
-    public Parameters(String token, String userCode, List<String> ids) {
-        this.token = token;
+    public Parameters(String userCode, List<String> ids) {
         this.userCode = userCode;
         this.ids = ids;
     }
