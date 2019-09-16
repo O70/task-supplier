@@ -2,9 +2,12 @@ package org.thraex.supplier.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j2;
-import org.thraex.supplier.constant.Keys;
+import org.springframework.util.StringUtils;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.WebClient;
 import org.thraex.supplier.constant.Labels;
 import org.thraex.supplier.util.ResponseData;
+import reactor.core.publisher.Mono;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -34,13 +37,22 @@ public class IntrospectFilter implements Filter {
     private String IDP_URL = null;
     private Map<String, String> INTROSPECT_PARAMS = null;
 
+    private WebClient webClient;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         log.info("Initializes the introspect filter.");
-        this.IDP_URL = "http://localhost:8082";
-        this.INTROSPECT_PARAMS = new HashMap<>(3);
-        this.INTROSPECT_PARAMS.put(Keys.client_id.name(), "cid");
-        this.INTROSPECT_PARAMS.put(Keys.client_secret.name(), "cse");
+
+        //this.IDP_URL = "http://localhost:8082";
+
+        Map<String, String> params = new HashMap<>(2);
+        params.put("client_id", "cid");
+        params.put("client_secret", "cse");
+
+        this.webClient = WebClient.builder()
+                .baseUrl("http://localhost:8082/introspect")
+                .defaultUriVariables(params)
+                .build();
     }
 
     @Override
@@ -51,7 +63,7 @@ public class IntrospectFilter implements Filter {
                 .orElse(req.getHeader(Labels.token.name()));
         log.info("#doFilter Global introspect filter: [path: {}, token: {}].", req.getServletPath(), token);
 
-        if (this.introspect(token)) {
+        if (!StringUtils.isEmpty(token) && this.introspect(token)) {
             chain.doFilter(request, response);
         }  else {
             request.setCharacterEncoding(ENCODING);
@@ -66,6 +78,13 @@ public class IntrospectFilter implements Filter {
     }
 
     private boolean introspect(String token) {
+        Mono<Map> mono = this.webClient.post()
+                .syncBody(BodyInserters.fromFormData(Labels.token.name(), token))
+                .retrieve()
+                .bodyToMono(Map.class);
+
+        Map block = mono.block();
+
         return "Guiwang".equals(token);
     }
 
