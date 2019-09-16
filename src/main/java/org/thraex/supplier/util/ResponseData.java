@@ -1,6 +1,12 @@
 package org.thraex.supplier.util;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
+
+import javax.servlet.ServletOutputStream;
+import javax.servlet.ServletResponse;
+import java.io.IOException;
+import java.util.function.Function;
 
 /**
  * @author 鬼王
@@ -26,6 +32,17 @@ public class ResponseData {
 
     public static ResponseData fail(Object data) {
         return new ResponseData(data, false);
+    }
+
+    public static Function<ResponseData, Runnable> output(ServletResponse response) {
+        return d -> () -> {
+            try (ServletOutputStream os = response.getOutputStream()) {
+                new ObjectMapper().writeValue(os, d);
+                os.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        };
     }
 
 }

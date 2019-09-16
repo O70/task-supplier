@@ -1,6 +1,5 @@
 package org.thraex.supplier.task.action;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import lombok.extern.log4j.Log4j2;
 import org.thraex.supplier.constant.Labels;
@@ -12,7 +11,6 @@ import org.thraex.supplier.task.service.impl.QueryServiceImpl;
 import org.thraex.supplier.util.ResponseData;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -73,7 +71,7 @@ public class TaskAction extends HttpServlet {
         } catch (NullPointerException | IllegalArgumentException | IllegalStateException e) {
             String message = e.getMessage();
             log.error(message);
-            output(response).apply(ResponseData.fail(message)).run();
+            ResponseData.output(response).apply(ResponseData.fail(message)).run();
         }
 
         log.info("#doPost execution time: {}.", (System.currentTimeMillis() - start) / 1000F);
@@ -95,7 +93,7 @@ public class TaskAction extends HttpServlet {
 
         return starter
                 .andThen(query(isTodo))
-                .andThen(output(response))
+                .andThen(ResponseData.output(response))
                 .apply(parameters(request, isTodo).get());
     }
 
@@ -142,17 +140,6 @@ public class TaskAction extends HttpServlet {
                         .orElseThrow(() -> new NullPointerException(Status.ERROR_NOT_USER.phrase)) :
                 Optional.ofNullable(this.queryService.getDoneList(p.getUserCode(), p.getIds()))
                         .get());
-    }
-
-    private Function<ResponseData, Runnable> output(HttpServletResponse resp) {
-        return data -> () -> {
-            try (ServletOutputStream os = resp.getOutputStream()) {
-                new ObjectMapper().writeValue(os, data);
-                os.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        };
     }
 
 }
