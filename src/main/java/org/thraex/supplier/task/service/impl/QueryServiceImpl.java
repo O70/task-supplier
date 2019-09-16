@@ -2,6 +2,7 @@ package org.thraex.supplier.task.service.impl;
 
 import org.thraex.supplier.task.service.QueryService;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ public class QueryServiceImpl implements QueryService {
 
     @Override
     public List<String> getDoneList(String account, List<String> todoIds) {
-        return null;
+        return Arrays.asList();
     }
 
 }

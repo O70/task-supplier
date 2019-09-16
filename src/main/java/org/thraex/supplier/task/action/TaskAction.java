@@ -127,6 +127,7 @@ public class TaskAction extends HttpServlet {
                 // InputStreamReader获取无果，通过request获取
                 String loginId = getParameter(request).apply(Labels.loginId),
                         ids = getParameter(request).apply(Labels.ids);
+                log.info("{} parameters: [loginId: {}, ids: {}]", Types.DONE, loginId, ids);
 
                 return new Parameters(codeFunction.apply(loginId), Arrays.asList(ids.split(",")));
             });
