@@ -1,7 +1,7 @@
 package org.thraex.supplier.task.dto;
 
 import lombok.Getter;
-import org.thraex.supplier.task.constant.Types;
+import org.thraex.supplier.constant.Types;
 
 import java.util.List;
 

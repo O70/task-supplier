@@ -2,7 +2,8 @@ package org.thraex.supplier.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j2;
-import org.thraex.supplier.task.constant.Labels;
+import org.thraex.supplier.constant.Keys;
+import org.thraex.supplier.constant.Labels;
 import org.thraex.supplier.util.ResponseData;
 
 import javax.servlet.Filter;
@@ -15,6 +16,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -23,7 +25,7 @@ import java.util.Optional;
  * @date 2019/09/12 22:48
  */
 @Log4j2
-@WebFilter("/*")
+@WebFilter("*")
 public class IntrospectFilter implements Filter {
 
     private final static String ENCODING = "utf-8";
@@ -35,6 +37,10 @@ public class IntrospectFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         log.info("Initializes the introspect filter.");
+        this.IDP_URL = "http://localhost:8082";
+        this.INTROSPECT_PARAMS = new HashMap<>(3);
+        this.INTROSPECT_PARAMS.put(Keys.client_id.name(), "cid");
+        this.INTROSPECT_PARAMS.put(Keys.client_secret.name(), "cse");
     }
 
     @Override
