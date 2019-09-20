@@ -7,9 +7,18 @@
     <groupId>org.thraex</groupId>
     <artifactId>task-supplier</artifactId>
     <version>1.0.0</version>
+    <packaging>war</packaging>
 
     <name>Task Supplier</name>
     <description>Task Supplier</description>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>nexus</id>
+            <name>Nexus</name>
+            <url>http://10.122.163.216:8081/repository/maven-pms/</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <developers>
         <developer>
@@ -85,11 +94,19 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.8.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
                     <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.3</version>
+                <configuration>
+                    <attachClasses>true</attachClasses>
                 </configuration>
             </plugin>
             <plugin>
@@ -99,9 +116,68 @@
                 <configuration>
                     <path>/</path>
                     <port>8081</port>
-                    <packaging>war</packaging>
+<!--                    <packaging>war</packaging>-->
                 </configuration>
             </plugin>
+            <!--<plugin>
+                <groupId>com.oracle.weblogic</groupId>
+                <artifactId>weblogic-maven-plugin</artifactId>
+                <version>12.2.1-3-0</version>
+                <executions>
+                    <execution>
+                        <id>wls-appc</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>appc</goal>
+                        </goals>
+                        <configuration>
+                            <source>${project.build.directory}/${project.build.finalName}.${project.packaging}</source>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>wls-deploy</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>deploy</goal>
+                        </goals>
+                        <configuration>
+                            <adminurl>t3://127.0.0.1:7001</adminurl>
+                            <user>weblogic</user>
+                            <password>weblogic</password>
+                            <source>${project.build.directory}/${project.build.finalName}.${project.packaging}</source>
+                            <targets>AdminServer</targets>
+                            <verbose>true</verbose>
+                            <name>${project.build.finalName}</name>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>wls-create-domain</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>create-domain</goal>
+                        </goals>
+                        <configuration>
+                            <middlewareHome>c:/dev/wls12210</middlewareHome>
+                            <domainHome>${project.build.directory}/base_domain</domainHome>
+                            <user>weblogic</user>
+                            <password>weblogic</password>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>wls-stop-app</id>
+                        <phase>pre-integration-test</phase>
+                        <goals>
+                            <goal>stop-app</goal>
+                        </goals>
+                        <configuration>
+                            <adminurl>t3://127.0.0.1:7001</adminurl>
+                            <user>weblogic</user>
+                            <password>weblogic</password>
+                            <name>${project.build.finalName}</name>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>-->
         </plugins>
     </build>
 </project>
