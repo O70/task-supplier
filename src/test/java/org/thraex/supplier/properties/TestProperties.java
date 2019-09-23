@@ -18,7 +18,7 @@ public class TestProperties {
     private final static String CONFIG_LOCATION = "application.properties";
 
     @Test
-    public void get() {
+    public void properties() {
         PropertiesUtil properties = PropertiesUtil.getProperties();
         log.info(properties);
         Properties systemProperties = PropertiesUtil.getSystemProperties();

@@ -19,6 +19,15 @@
         </developer>
     </developers>
 
+    <!-- 只为com.oracle:ojdbc14:jar:10.2.0.4.0 -->
+    <repositories>
+        <repository>
+            <id>nexus</id>
+            <name>Nexus</name>
+            <url>http://10.122.163.216:8081/repository/maven-pms/</url>
+        </repository>
+    </repositories>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>8</java.version>
