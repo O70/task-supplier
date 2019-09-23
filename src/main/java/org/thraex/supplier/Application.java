@@ -1,11 +1,11 @@
-package org.thraex.supplier.webflux;
+package org.thraex.supplier;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.thraex.supplier.common.util.ResponseData;
+import org.thraex.supplier.util.ResponseData;
 
 /**
  * @author 鬼王
@@ -24,7 +24,7 @@ public class Application {
 
     @GetMapping("/task")
     public ResponseData task() {
-        return ResponseData.success("WebFlux");
+        return ResponseData.success(application);
     }
 
 }
