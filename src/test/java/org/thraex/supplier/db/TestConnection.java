@@ -4,6 +4,8 @@ import lombok.extern.log4j.Log4j2;
 import oracle.jdbc.driver.OracleDriver;
 import org.junit.Test;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,11 +20,28 @@ import java.util.Properties;
 @Log4j2
 public class TestConnection {
 
-    private final static String URL = "jdbc:oracle:thin:@10.27.213.155:1521:XE";
+    private final static String CONFIG_LOCATION = "application.properties";
+    private static String URL;
+    private static String USERNAME;
+    private static String PASSWORD;
+
     private final static String SQL = "SELECT * FROM V$VERSION ORDER BY BANNER";
-    private final static String USERNAME = "kygl";
-    private final static String PASSWORD = "PTRkygl413";
     private final static String LABEL = "BANNER";
+
+    public TestConnection() {
+        log.info("Initializes the member variable.");
+
+        try (InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(CONFIG_LOCATION)) {
+            Properties pro = new Properties();
+            pro.load(inputStream);
+
+            URL = pro.getProperty("jdbc.url");
+            USERNAME = pro.getProperty("username");
+            PASSWORD = pro.getProperty("password");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
     public void oracle1() {
