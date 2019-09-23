@@ -1,4 +1,4 @@
-package org.thraex.supplier.task.service;
+package org.thraex.supplier.servlet.task.service;
 
 import java.util.List;
 

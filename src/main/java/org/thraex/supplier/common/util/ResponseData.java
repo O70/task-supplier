@@ -1,4 +1,4 @@
-package org.thraex.supplier.util;
+package org.thraex.supplier.common.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;

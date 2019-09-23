@@ -1,6 +1,6 @@
-package org.thraex.supplier.task.service.impl;
+package org.thraex.supplier.servlet.task.service.impl;
 
-import org.thraex.supplier.task.service.QueryService;
+import org.thraex.supplier.servlet.task.service.QueryService;
 
 import java.util.Arrays;
 import java.util.List;

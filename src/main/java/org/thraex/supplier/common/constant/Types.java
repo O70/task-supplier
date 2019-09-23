@@ -1,4 +1,4 @@
-package org.thraex.supplier.constant;
+package org.thraex.supplier.common.constant;
 
 import java.util.Arrays;
 

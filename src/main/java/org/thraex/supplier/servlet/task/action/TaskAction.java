@@ -1,14 +1,14 @@
-package org.thraex.supplier.task.action;
+package org.thraex.supplier.servlet.task.action;
 
 import com.google.gson.Gson;
 import lombok.extern.log4j.Log4j2;
-import org.thraex.supplier.constant.Labels;
-import org.thraex.supplier.constant.Status;
-import org.thraex.supplier.constant.Types;
-import org.thraex.supplier.task.dto.Parameters;
-import org.thraex.supplier.task.service.QueryService;
-import org.thraex.supplier.task.service.impl.QueryServiceImpl;
-import org.thraex.supplier.util.ResponseData;
+import org.thraex.supplier.common.constant.Labels;
+import org.thraex.supplier.common.constant.Status;
+import org.thraex.supplier.common.constant.Types;
+import org.thraex.supplier.servlet.task.dto.Parameters;
+import org.thraex.supplier.servlet.task.service.QueryService;
+import org.thraex.supplier.servlet.task.service.impl.QueryServiceImpl;
+import org.thraex.supplier.common.util.ResponseData;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

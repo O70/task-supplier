@@ -1,4 +1,4 @@
-package org.thraex.supplier.filter;
+package org.thraex.supplier.servlet.filter;
 
 import io.netty.channel.ChannelOption;
 import lombok.extern.log4j.Log4j2;
@@ -7,9 +7,9 @@ import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.thraex.supplier.constant.Labels;
-import org.thraex.supplier.constant.Status;
-import org.thraex.supplier.util.ResponseData;
+import org.thraex.supplier.common.constant.Labels;
+import org.thraex.supplier.common.constant.Status;
+import org.thraex.supplier.common.util.ResponseData;
 import reactor.core.publisher.Mono;
 import reactor.netty.http.client.HttpClient;
 
