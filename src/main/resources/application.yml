@@ -1,3 +1,7 @@
 spring:
   application:
-    name: WebFlux
+    name: TASK-SUPPLIER
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    username: root
+    password: oracle
